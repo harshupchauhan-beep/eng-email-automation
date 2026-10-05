@@ -1,0 +1,10 @@
+node_modules
+.next
+.git
+uploads
+coverage
+dist
+*.md
+.env
+.env.local
+agent-transcripts
