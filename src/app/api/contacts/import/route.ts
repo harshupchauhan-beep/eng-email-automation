@@ -1,9 +1,8 @@
-import { mkdir, writeFile } from "node:fs/promises";
-import path from "node:path";
 import { NextRequest, NextResponse } from "next/server";
 import { withApi } from "@/lib/api";
 import { prisma } from "@/lib/db";
 import { enqueueImport } from "@/lib/queue/queues";
+import { putImportCsv } from "@/lib/storage";
 
 export async function POST(request: NextRequest) {
   return withApi(
@@ -24,11 +23,8 @@ export async function POST(request: NextRequest) {
           createdById: user.id,
         },
       });
-      const dir = path.join(process.cwd(), "uploads", "imports");
-      await mkdir(dir, { recursive: true });
-      const filePath = path.join(dir, `${job.id}.csv`);
       const bytes = Buffer.from(await file.arrayBuffer());
-      await writeFile(filePath, bytes);
+      const filePath = await putImportCsv(job.id, bytes);
       await prisma.importJob.update({
         where: { id: job.id },
         data: { filePath },

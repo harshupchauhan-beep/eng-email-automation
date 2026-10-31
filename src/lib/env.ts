@@ -56,6 +56,13 @@ const envSchema = z.object({
   FAKE_PROVIDER_TRANSIENT_RATE: z.coerce.number().min(0).max(1).default(0.03),
   FAKE_PROVIDER_PERMANENT_RATE: z.coerce.number().min(0).max(1).default(0.01),
   WORKER_HEALTH_PORT: z.coerce.number().int().positive().default(3001),
+  STORAGE_DRIVER: z.enum(["local", "r2"]).optional(),
+  STORAGE_LOCAL_DIR: optionalString,
+  R2_ACCOUNT_ID: optionalString,
+  R2_ACCESS_KEY_ID: optionalString,
+  R2_SECRET_ACCESS_KEY: optionalString,
+  R2_BUCKET: optionalString,
+  R2_ENDPOINT: optionalString,
 });
 
 export type Env = z.infer<typeof envSchema>;

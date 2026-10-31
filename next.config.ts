@@ -16,6 +16,9 @@ const nextConfig: NextConfig = {
   output: "standalone",
   serverExternalPackages: ["bullmq", "ioredis", "pino", "pino-pretty", "@prisma/client"],
   poweredByHeader: false,
+  async rewrites() {
+    return [{ source: "/health", destination: "/api/health" }];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

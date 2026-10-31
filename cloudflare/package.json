@@ -1,0 +1,14 @@
+{
+  "name": "eng-email-automation-gateway",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deploy": "cf deploy",
+    "deploy:dry-run": "cf deploy --dry-run"
+  },
+  "devDependencies": {
+    "cf": "^0.15.0",
+    "wrangler": "^4.155.0"
+  }
+}

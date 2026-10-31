@@ -7,4 +7,7 @@ dist
 *.md
 .env
 .env.local
+.dev.vars
 agent-transcripts
+cloudflare
+cloudflare.config.ts

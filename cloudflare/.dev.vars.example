@@ -1,0 +1,13 @@
+# Copied to .dev.vars for `cf deploy --secrets-file`. Do not commit real values.
+DATABASE_URL=
+REDIS_URL=
+SESSION_SECRET=
+UNSUBSCRIBE_SECRET=
+WEBHOOK_SECRET=
+EMAIL_PROVIDER=ses
+EMAIL_PROVIDER_API_KEY=
+EMAIL_FROM_ADDRESS=
+EMAIL_FROM_NAME=
+APP_URL=https://eng-email-automation.<your-subdomain>.workers.dev
+R2_ACCESS_KEY_ID=
+R2_SECRET_ACCESS_KEY=

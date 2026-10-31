@@ -1,5 +1,5 @@
-import { createReadStream } from "node:fs";
 import { parse } from "csv-parse";
+import { openImportCsv } from "../storage";
 import { ContactStatus, Prisma } from "@prisma/client";
 import { prisma } from "../db";
 import { getEnv } from "../env";
@@ -56,7 +56,7 @@ export async function processCsvImport(importJobId: string) {
 
   const env = getEnv();
   const batchSize = env.EMAIL_BATCH_SIZE;
-  const parser = createReadStream(job.filePath).pipe(
+  const parser = (await openImportCsv(job.filePath)).pipe(
     parse({
       columns: true,
       skip_empty_lines: true,
